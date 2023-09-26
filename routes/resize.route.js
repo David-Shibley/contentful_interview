@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/resize/:path", async (req, res) => {
   try {
-    const { height, width } = req.query;
+    const { height = 300, width = 300 } = req.query;
     const { path } = req.params;
     const image = await ResizeController.resize(
       `./images/${path}`,
