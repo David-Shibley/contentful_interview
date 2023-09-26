@@ -1,8 +1,13 @@
-const sharp = require("sharp");
+const ResizeService = require("../services/resize.service");
 
-async function resize(path, width, height) {
-  const transformer = new sharp(path).resize(width, height);
-  return await transformer.toBuffer();
+async function resize(req) {
+  const { height = 300, width = 300 } = req.query;
+  const { path } = req.params;
+  return await ResizeService.resize(
+    `./images/${path}`,
+    Number(width),
+    Number(height)
+  );
 }
 
 module.exports = {

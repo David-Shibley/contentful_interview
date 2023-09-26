@@ -1,12 +1,12 @@
-const Controller = require("../../controllers/resize.controller");
+const Service = require("../../services/resize.service");
+
 describe("Resize", () => {
   it("Does not error when handed proper values", async () => {
     const path = "./images/image1.png";
     const width = 300;
     const height = 300;
-    const result = await Controller.resize(path, width, height);
     expect(async () => {
-      await Controller.resize(path, width, height);
+      await Service.resize(path, width, height);
     }).rejects.not.toThrow();
   });
 
@@ -15,7 +15,7 @@ describe("Resize", () => {
     const width = "300";
     const height = "300";
     expect(async () => {
-      await Controller.resize(path, width, height);
+      await Service.resize(path, width, height);
     }).rejects.toThrow();
   });
 });
