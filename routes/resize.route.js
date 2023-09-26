@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/resize/:path", async (req, res) => {
   try {
-    const image = await ResizeController.resize(req, res);
+    const image = await ResizeController.resize(req);
     res.send(image);
   } catch (error) {
     res.status(500);
